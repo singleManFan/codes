@@ -1,0 +1,1 @@
+process.stdout.write('输出到控制台\n')
