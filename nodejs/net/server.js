@@ -27,6 +27,7 @@ server.on('listening', () => {
 
                 const result = transcoder.decode(package); // 解码
                 console.log(result);
+                // 读数据
                 socket.write(transcoder.encode(result.body, result.serialNumber));
             }
 
