@@ -181,3 +181,26 @@ var select = function (callback) {
   }
 };
 ```
+
+## 内存控制
+
+在服务端，资源向来是寸土寸金。
+V8 作为虚拟机。
+Node 通过 JavaScript 使用内存就会发现只能使用部分内存（64 位系统为 1.4GB），导致 Node 无法操作大内存对象，这样在单个 Node 进程的情况下，计算机的内存资源无法得到充足的使用。
+
+在 V8 中，所有的 JavaScript 对象都是通过堆来进行分配的。
+
+```js
+porcess.memoryUsage();
+
+// 解除限制，只能在启动时指定，当内存分配超阈值就会引起进程出错
+node --max-old-space-size=1700 test.js // MB
+node --max-new-space-size=1024 test.js // kb
+```
+
+## V8 的内存分代
+
+- 新生代的内存空间，存活时间短的对象
+- 老生代的内存空间，存活时间较长或常驻内存的对象
+
+v8 堆大小等于两代之和。
