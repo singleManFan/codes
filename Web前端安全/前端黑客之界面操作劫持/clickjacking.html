@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clickjacking</title>
+    <style>
+        #click {
+            width: 100px;
+            top:20px;
+            left: 20px;
+            position: absolute;
+            z-index:1;
+        }
+
+        #hidden {
+            height: 50px;
+            width: 120px;
+            position: absolute;
+            filter: alpha(opacity=50);
+            opacity: .5;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <input id="click" value="Click me" type="button">
+    <iframe id="hidden" src="inner.html" frameborder="0"></iframe>
+</body>
+</html>
